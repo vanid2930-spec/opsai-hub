@@ -1,6 +1,16 @@
 import React from 'react';
+import { supabase } from '@/lib/supabase';
 
-export default function Dashboard() {
+// Tell Next.js to always fetch fresh data from the database (no caching old rows)
+export const dynamic = 'force-dynamic';
+
+export default async function Dashboard() {
+  // Fetch live tickets from your Supabase cloud database
+  const { data: tickets, error } = await supabase
+    .from('tickets')
+    .select('*')
+    .order('id', { ascending: true });
+
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 flex">
       {/* Sidebar Navigation */}
@@ -38,8 +48,9 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-slate-950 border border-slate-800 p-6 rounded-xl">
             <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Active Tickets</h3>
-            <p className="text-3xl font-bold text-white mt-2">1,482</p>
-            <span className="text-xs text-emerald-400 mt-1 block">↑ 12% from yesterday</span>
+            {/* Real Counter: Reads the exact array size from Supabase */}
+            <p className="text-3xl font-bold text-white mt-2">{tickets?.length || 0}</p>
+            <span className="text-xs text-emerald-400 mt-1 block">● Live Connected</span>
           </div>
           <div className="bg-slate-950 border border-slate-800 p-6 rounded-xl">
             <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">AI Resolution Rate</h3>
@@ -63,18 +74,29 @@ export default function Dashboard() {
               <div>Confidence</div>
               <div className="text-right">Decision</div>
             </div>
-            <div className="p-4 grid grid-cols-4 gap-4 items-center border-b border-slate-800 text-sm">
-              <div className="font-medium text-slate-200">"Cannot login to my account"</div>
-              <div className="text-slate-400">Trigger standard reset & verify email</div>
-              <div className="text-emerald-400 font-mono font-bold">98%</div>
-              <div className="text-right space-x-2">
-                <button className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-emerald-500/20 transition">Approve</button>
-                <button className="bg-rose-500/10 text-rose-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-rose-500/20 transition">Reject</button>
+
+            {/* Dynamically loops over your Supabase database rows */}
+            {tickets && tickets.length > 0 ? (
+              tickets.map((ticket: any) => (
+                <div key={ticket.id} className="p-4 grid grid-cols-4 gap-4 items-center border-b border-slate-800 text-sm">
+                  <div className="font-medium text-slate-200">"{ticket.problem}"</div>
+                  <div className="text-slate-400">{ticket.proposed_action}</div>
+                  <div className="text-emerald-400 font-mono font-bold">{ticket.confidence}%</div>
+                  <div className="text-right space-x-2">
+                    <button className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-emerald-500/20 transition">Approve</button>
+                    <button className="bg-rose-500/10 text-rose-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-rose-500/20 transition">Reject</button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="p-8 text-center text-slate-500 text-sm">
+                No active operational tickets found in the database.
               </div>
-            </div>
+            )}
           </div>
         </div>
       </main>
     </div>
   );
 }
+
