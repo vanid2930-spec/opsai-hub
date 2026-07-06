@@ -1,63 +1,78 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+export default function Dashboard() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-slate-900 text-slate-100 flex">
+      {/* Sidebar Navigation */}
+      <aside className="w-64 bg-slate-950 border-r border-slate-800 p-6 flex flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-2 mb-8">
+            <div className="h-6 w-6 bg-blue-500 rounded-md animate-pulse"></div>
+            <h1 className="text-xl font-bold tracking-wider text-white">OpsAI Hub</h1>
+          </div>
+          <nav className="space-y-2">
+            <a href="#" className="block px-4 py-2.5 rounded-lg bg-slate-800 text-white font-medium">Dashboard</a>
+            <a href="#" className="block px-4 py-2.5 rounded-lg text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition">AI Agents</a>
+            <a href="#" className="block px-4 py-2.5 rounded-lg text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition">Knowledge Base</a>
+            <a href="#" className="block px-4 py-2.5 rounded-lg text-slate-400 hover:bg-slate-900 hover:text-slate-200 transition">Settings</a>
+          </nav>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="text-xs text-slate-500 border-t border-slate-800 pt-4">
+          Status: <span className="text-emerald-400 font-semibold">● Live Engine</span>
+        </div>
+      </aside>
+
+      {/* Main Operational Window */}
+      <main className="flex-1 p-8 overflow-y-auto">
+        <header className="flex justify-between items-center mb-8 pb-4 border-b border-slate-800">
+          <div>
+            <h2 className="text-2xl font-bold text-white">Operations Center</h2>
+            <p className="text-sm text-slate-400">Monitor autonomous customer support queues and AI actions.</p>
+          </div>
+          <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium transition text-sm">
+            Sync New Data
+          </button>
+        </header>
+
+        {/* Dashboard Grid Analytics */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-slate-950 border border-slate-800 p-6 rounded-xl">
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Active Tickets</h3>
+            <p className="text-3xl font-bold text-white mt-2">1,482</p>
+            <span className="text-xs text-emerald-400 mt-1 block">↑ 12% from yesterday</span>
+          </div>
+          <div className="bg-slate-950 border border-slate-800 p-6 rounded-xl">
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">AI Resolution Rate</h3>
+            <p className="text-3xl font-bold text-white mt-2">84.6%</p>
+            <span className="text-xs text-blue-400 mt-1 block">Target: 80.0% achieved</span>
+          </div>
+          <div className="bg-slate-950 border border-slate-800 p-6 rounded-xl">
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Avg Response Time</h3>
+            <p className="text-3xl font-bold text-white mt-2">1.8s</p>
+            <span className="text-xs text-slate-500 mt-1 block">Database pipeline optimal</span>
+          </div>
+        </div>
+
+        {/* Live Simulation Queue */}
+        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6">
+          <h3 className="text-lg font-bold text-white mb-4">Pending AI Actions (Human-in-the-Loop)</h3>
+          <div className="border border-slate-800 rounded-lg overflow-hidden">
+            <div className="bg-slate-900/50 px-4 py-3 border-b border-slate-800 text-xs font-semibold uppercase text-slate-400 grid grid-cols-4 gap-4">
+              <div>Customer Problem</div>
+              <div>AI Proposed Action</div>
+              <div>Confidence</div>
+              <div className="text-right">Decision</div>
+            </div>
+            <div className="p-4 grid grid-cols-4 gap-4 items-center border-b border-slate-800 text-sm">
+              <div className="font-medium text-slate-200">"Cannot login to my account"</div>
+              <div className="text-slate-400">Trigger standard reset & verify email</div>
+              <div className="text-emerald-400 font-mono font-bold">98%</div>
+              <div className="text-right space-x-2">
+                <button className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-emerald-500/20 transition">Approve</button>
+                <button className="bg-rose-500/10 text-rose-400 px-3 py-1 rounded-md text-xs font-medium hover:bg-rose-500/20 transition">Reject</button>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
