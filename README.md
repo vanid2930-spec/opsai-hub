@@ -1,17 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+OpsAI Hub is a modern AI-powered web platform designed to simplify daily productivity by providing users with intelligent tools in one centralized dashboard. The application offers a clean, responsive, and user-friendly interface where users can interact with AI-powered features to improve efficiency, automate repetitive tasks, and enhance their overall workflow.
 
-## Getting Started
+The project is built using modern web technologies and demonstrates frontend development, responsive UI design, reusable components, and integration with backend services.
 
-First, run the development server:
+  # Technology Used
+| Technology | Purpose |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+|------------|----------|
+
+| Next.js | React Framework |
+
+| React.js | Frontend Library |
+
+| TypeScript | Type-safe Programming |
+
+| CSS | Styling |
+
+| JavaScript | Client-side Functionality |
+
+| Node.js | Runtime Environment |
+
+| npm | Package Management |
+
+---
+
+# 📂 Project Structure
+
+```
+
+OpsAI-Hub
+
+│
+
+├── app/
+
+├── components/
+
+├── lib/
+
+├── public/
+
+├── README.md
+
+├── package.json
+
+├── tsconfig.json
+
+├── next.config.ts
+
+├── eslint.config.mjs
+
+└── .gitignore
+
+
+# ⭐ Conclusion
+
+OpsAI Hub is a modern AI-based web application that demonstrates responsive frontend development, reusable component architecture, and the integration of AI-powered functionality into a clean and intuitive user interface. This project showcases practical web development skills and serves as a strong portfolio project for internships and software development roles.This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
